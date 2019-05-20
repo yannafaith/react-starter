@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ToDoForm from './components/TodoForm.jsx';
+import ToDoList from './components/ToDoList.jsx';
 
 const todoData = [
   {
@@ -33,7 +34,6 @@ class App extends Component {
     this.setState({
       [e.target.name]: e.target.value
     })
-    console.log(this.state.newTodo)
   }
 
   addTodo = (e) => {
@@ -42,12 +42,22 @@ class App extends Component {
     this.setState({
       todos: [
         ...this.state.todos, 
-        {task: this.state.task,
+        {task: this.state.newTodo,
           id: Date.now(),
           completed: false
         }
       ],
       task: '',
+    })
+  }
+
+  toggleComplete = (id) => {
+    this.setState({
+      todos: this.state.todos.map(item => {
+        if (item.id === id) {
+           return item.completed === false ? true : false
+        }
+      })
     })
   }
 
@@ -58,10 +68,11 @@ class App extends Component {
     return (
       <div className="App">
         <h1>To do App</h1>
-        {this.state.todos[0].task}
+        <ToDoList todos={this.state.todos} />
         <ToDoForm 
           changehandler={this.changehandler}
           addTodo={this.addTodo} 
+          toggleComplete={this.toggleComplete}
         />
 
       </div>
