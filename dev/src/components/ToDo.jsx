@@ -1,4 +1,5 @@
 import React from 'react';
+import '../index.css'
 
 const ToDo = (props) => {
     return (
@@ -6,7 +7,7 @@ const ToDo = (props) => {
             {props.todos.map(item => {
                 return (
                     <p 
-                        className={item.completed}
+                        className={`${item.completed}`}
                         onClick={() => props.toggleComplete(item.id)}>
                         {item.task}
                     </p>)
