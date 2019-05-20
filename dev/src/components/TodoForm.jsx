@@ -5,7 +5,7 @@ const TodoForm = (props) => {
     return (
         <div>
             <input onChange={props.changehandler} name="newTodo" />
-            <button onSubmit={props.addTodo}>Add Todo</button>
+            <button onClick={props.addTodo}>Add Todo</button>
             <button>Clear Completed</button>
         </div>
     )

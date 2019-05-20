@@ -25,7 +25,6 @@ class App extends Component {
 
     this.state = {
       todos: todoData,
-      newTodo: ''
     }
 
   }
@@ -37,9 +36,18 @@ class App extends Component {
     console.log(this.state.newTodo)
   }
 
-  addTodo = () => {
+  addTodo = (e) => {
+    e.preventDefault();
+
     this.setState({
-      todos: [...this.state.todos, this.state.newTodo]
+      todos: [
+        ...this.state.todos, 
+        {task: this.state.task,
+          id: Date.now(),
+          completed: false
+        }
+      ],
+      task: '',
     })
   }
 
